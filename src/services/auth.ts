@@ -39,9 +39,9 @@ export default class AuthService implements IAuthService {
         email: user.email,
         userId: user._id,
       },
-      'secret',
+      jwtConfig.jwtSecret,
       {
-        expiresIn: '8hr',
+        expiresIn: jwtConfig.expiresIn,
       }
     );
     return {

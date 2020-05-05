@@ -1,11 +1,12 @@
 import { Router, Request, Response } from 'express';
+import isAuth from '../middlewares/auth';
 import VisitService from '../../services/visit';
 import { IVisit } from '../../interfaces/IVisit';
 
 const route = Router();
 const visitService = new VisitService();
 
-route.get('/', async (req: Request, res: Response) => {
+route.get('/', isAuth, async (req: Request, res: Response) => {
   let visits: null | IVisit[] = null
   try {
     visits = await visitService.getVisits();
