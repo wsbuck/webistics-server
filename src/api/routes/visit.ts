@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, response } from 'express';
 import isAuth from '../middlewares/auth';
 import VisitService from '../../services/visit';
 import { IVisit } from '../../interfaces/IVisit';
@@ -15,6 +15,10 @@ route.get('/', isAuth, async (req: Request, res: Response) => {
     res.status(400).json({ message: "error occurred" });
   }
   res.status(200).json({ visits });
+});
+
+route.get('/stream', isAuth, (req: Request, res: Response) => {
+  visitService.getVisitsStream(res);
 });
 
 route.post('/', async (req: Request, res: Response) => {
