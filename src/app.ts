@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import cors from 'cors';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/auth', authRouter);
 app.use('/visit', visitRouter);
