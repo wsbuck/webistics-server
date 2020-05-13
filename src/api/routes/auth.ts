@@ -6,23 +6,23 @@ import { IToken } from '../../interfaces/IToken';
 const route = Router();
 const authService = new AuthService();
 
-route.post('/register', async (req: Request, res: Response, next: NextFunction) => {
-  const { password, name, email } = req.body;
-  let newUser: IUser;
-  try {
-    newUser = await authService.createUser(email, name, password);
-  } catch (e) {
-    res.status(400);
-    res.json({ message: e.message });
-  }
-  if (newUser) {
-    res.status(201);
-    res.json({ user: newUser });
-  } else {
-    res.status(400);
-    res.json({ message: "error" });
-  }
-});
+// route.post('/register', async (req: Request, res: Response, next: NextFunction) => {
+//   const { password, name, email } = req.body;
+//   let newUser: IUser;
+//   try {
+//     newUser = await authService.createUser(email, name, password);
+//   } catch (e) {
+//     res.status(400);
+//     res.json({ message: e.message });
+//   }
+//   if (newUser) {
+//     res.status(201);
+//     res.json({ user: newUser });
+//   } else {
+//     res.status(400);
+//     res.json({ message: "error" });
+//   }
+// });
 
 route.post('/signin', async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
